@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import axios from 'axios';
 import ChatBot from 'react-simple-chatbot';
 
 function handleRequest(chat_input){
-    return chat_input
+
+    axios.post("https://secret-chamber-49228.herokuapp.com/process_chat", {'message': chat_input})
+        .then(res => {
+            console.log(res.data)
+            return String(res.data)
+        })
+
 }
 
 const steps = [{
